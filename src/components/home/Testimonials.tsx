@@ -60,18 +60,22 @@ export default function Testimonials() {
           </h2>
         </AnimatedSection>
 
-        {/* Cards — draggable on mobile */}
-        <div ref={constraintRef} className="overflow-hidden -mx-6 md:mx-0">
-          <motion.div
-            className="flex md:grid md:grid-cols-3 gap-6 px-6 md:px-0 cursor-grab active:cursor-grabbing"
-            drag="x"
-            dragConstraints={constraintRef}
-            dragElastic={0.1}
-          >
+        {/* Cards — scrollable on mobile */}
+        <div 
+          className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto snap-x snap-mandatory -mx-6 md:mx-0 px-6 md:px-0 pb-4" 
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {/* Hide scrollbar for webkit */}
+          <style>{`
+            .overflow-x-auto::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style>
+          
             {testimonials.map((t, i) => (
               <motion.div
                 key={t.name}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-7 md:p-8 flex-shrink-0 w-[85vw] md:w-auto"
+                className="snap-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-7 md:p-8 flex-shrink-0 w-[85vw] md:w-auto"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
@@ -103,11 +107,10 @@ export default function Testimonials() {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
         </div>
 
         <AnimatedSection delay={0.3} className="text-center mt-10">
-          <p className="font-sans text-white/40 text-sm">Drag to scroll on mobile</p>
+          <p className="font-sans text-white/40 text-sm">Swipe to scroll on mobile</p>
         </AnimatedSection>
       </div>
     </section>
