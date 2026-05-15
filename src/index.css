@@ -7,12 +7,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   body {
     @apply font-sans antialiased;
     background-color: #FAFAF7;
     color: #1A1A1A;
     margin: 0;
+    overflow-x: hidden;
   }
   #root {
     width: 100%;
@@ -21,6 +23,7 @@
     text-align: left;
     border: none;
     min-height: 100vh;
+    overflow-x: hidden;
   }
   h1, h2, h3, h4 {
     font-family: 'Playfair Display', Georgia, serif;
